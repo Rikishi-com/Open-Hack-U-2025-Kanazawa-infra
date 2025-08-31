@@ -12,6 +12,9 @@ rm -rf /var/lib/apt/lists/*
 
 pip install --upgrade pip
 
+apt update
+
+apt install tree
 
 
 # --- ここまで ---
