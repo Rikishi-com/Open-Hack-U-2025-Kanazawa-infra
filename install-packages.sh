@@ -1,0 +1,20 @@
+#!/bin/sh
+# スクリプトの途中でエラーが発生したら、処理を中断するための設定（推奨）
+set -e
+
+# --- ここから実行したいコマンドを記述 ---
+
+apt-get update
+
+apt-get install -y curl git
+
+rm -rf /var/lib/apt/lists/*
+
+pip install --upgrade pip
+
+pip install --upgrade openai
+
+
+# --- ここまで ---
+
+echo "パッケージのインストールが完了しました。"
