@@ -12,7 +12,6 @@ rm -rf /var/lib/apt/lists/*
 
 pip install --upgrade pip
 
-pip install --upgrade openai
 
 
 # --- ここまで ---
