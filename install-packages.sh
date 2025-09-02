@@ -6,7 +6,7 @@ set -e
 
 apt-get update
 
-apt-get install -y curl git
+apt-get install -y curl git tree build-essential default-libmysqlclient-dev pkg-config
 
 rm -rf /var/lib/apt/lists/*
 
@@ -15,6 +15,7 @@ pip install --upgrade pip
 apt update
 
 apt install tree
+
 
 
 # --- ここまで ---

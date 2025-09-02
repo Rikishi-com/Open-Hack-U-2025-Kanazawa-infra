@@ -18,12 +18,13 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Djangoのプロジェクトを作成
+# Docker-composeでは必要ない
 RUN django-admin startproject hackathon .
 
 # アプリケーションの全ファイルをコピー
 COPY . .
 
-# ポートを公開
+# # ポートを公開
 EXPOSE 8000
 
-CMD [ "bash" ]
+CMD [ "python","manage.py","runserver","0.0.0.0:8000" ]
