@@ -1,21 +1,24 @@
 version: '3.8'
 
 services:
+  # dbサービスは変更不要です
   db:
     image: mysql:8.0
     container_name: mysql_db
     environment:
-      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}' # .envから読み込む
-      MYSQL_DATABASE: '${MYSQL_DATABASE}'         # .envから読み込む
-      MYSQL_USER: '${MYSQL_USER}'                 # .envから読み込む
-      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'         # .envから読み込む
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
+      MYSQL_DATABASE: '${MYSQL_DATABASE}'
+      MYSQL_USER: '${MYSQL_USER}'
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
 
+
   web:
-    build: .
+    # 👇 この行を追加します。ご自身のユーザー名/リポジトリ名に書き換えてください
+    image: ghcr.io/${YOUR_USERNAME}/${YOUR_REPOSITORY_NAME}:latest
     container_name: django_app
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -26,9 +29,9 @@ services:
       - db
     environment:
       - DB_HOST=db
-      - DB_NAME=${MYSQL_DATABASE} # .envから読み込む
-      - DB_USER=${MYSQL_USER}     # .envから読み込む
-      - DB_PASSWORD=${MYSQL_PASSWORD} # .envから読み込む
+      - DB_NAME=${MYSQL_DATABASE}
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
 
 volumes:
   mysql_data:
