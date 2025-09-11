@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # dbサービスは変更不要です
   db:
