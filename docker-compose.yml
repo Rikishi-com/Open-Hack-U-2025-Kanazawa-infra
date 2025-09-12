@@ -18,7 +18,7 @@ services:
     # 👇 この行を追加します。ご自身のユーザー名/リポジトリ名に書き換えてください
     image: ghcr.io/${USER_NAME}/${YOUR_REPOSITORY_NAME}:latest
     container_name: django_app
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ["/usr/local/bin/wait-for-it.sh", "db:3306", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - .:/app
     ports:
