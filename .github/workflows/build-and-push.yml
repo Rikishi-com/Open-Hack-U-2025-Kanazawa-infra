@@ -32,13 +32,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # 3. Dockerイメージのメタデータ（タグなど）を設定
+    # 3. Dockerイメージのメタデータ（タグなど）を設定
       - name: Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@v5
         with:
-          # イメージ名を ghcr.io/ユーザー名/リポジトリ名:latest のように設定
           images: ghcr.io/${{ github.repository }}
+          tags: |
+            # mainブランチへのプッシュ時にlatestタグを付与する
+            type=raw,value=latest,enable={{is_default_branch}}
 
       # 4. DjangoアプリのDockerイメージをビルドしてGHCRにプッシュ
       - name: Build and push Docker image
